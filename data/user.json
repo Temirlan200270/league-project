@@ -1,0 +1,41 @@
+{
+    "name": "Test User",
+    "id": "12345",
+    "level": 30,
+    "avatarUrl": "pictures/avatar.jpg",
+    "stats": {
+        "wins": 210,
+        "losses": 120,
+        "winrate": "63.64%",
+        "bestChampion": "Yasuo",
+        "bestSeason": "Gold",
+        "matchHistory": [
+            {
+                "champion": "Yasuo",
+                "result": "Победа",
+                "kda": "10/2/5",
+                "date": "2024-01-20"
+            },
+            {
+                "champion": "Jinx",
+                "result": "Поражение",
+                "kda": "5/8/3",
+                "date": "2024-01-18"
+            },
+            {
+                "champion": "Lux",
+                "result": "Победа",
+                "kda": "7/1/12",
+                "date": "2024-01-15"
+            },
+            {
+              "champion": "Гарен",
+              "result": "Поражение",
+              "kda": "3/4/3",
+              "date": "2024-01-10"
+            }
+        ],
+        "favoriteChampions": ["Yasuo", "Jinx", "Lux", "Гарен"],
+        "rank": "Золото I"
+    }
+}
