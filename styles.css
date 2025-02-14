@@ -1,0 +1,1037 @@
+/* --- Обновленные CSS переменные --- */
+:root {
+    --primary-color: #0ac8b9;
+    --primary-color-dark: #03978a;
+    --secondary-color: #fff;
+    --background-color: rgba(13, 23, 33, 0.95);
+    --accent-color: #c89b3c;
+    --text-color-light: #f0f0f0;
+    --section-bg: rgba(19, 28, 46, 0.9);
+    --gradient-bg: linear-gradient(135deg, #091428 0%, #0a1428 100%);
+    --border-radius: 8px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --content-max-width: 1100px;
+    --font-family: 'Montserrat', sans-serif;
+}
+
+/* --- Шрифт BeaufortforLOL --- */
+@font-face {
+    font-family: 'BeaufortforLOL';
+    src: url('fonts/BeaufortforLOL-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Сброс стилей --- */
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background: var(--gradient-bg) fixed,
+                url('pictures/lol_wallpaper.jpg') no-repeat center center/cover;
+    background-blend-mode: overlay;
+    color: var(--text-color-light);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Глобальные стили --- */
+header {
+    background: var(--gradient-bg);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+nav {
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+nav ul li {
+    margin: 5px 10px;
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--secondary-color);
+    font-weight: 700;
+    padding: 12px 20px;
+    display: block;
+    border-radius: var(--border-radius);
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav ul li a:hover {
+    background-color: var(--primary-color-dark);
+    color: white;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Выпадающее меню */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--background-color);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    left: 0;
+    top: 100%;
+    margin-top: 5px;
+    border-radius: var(--border-radius);
+}
+
+.dropdown-content li a:hover {
+    background-color: var(--primary-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* --- Общий класс для кнопок --- */
+.btn {
+    background: var(--gradient-bg);
+    box-shadow: inset 0 0 10px rgba(200, 155, 60, 0.4);
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(200, 155, 60, 0.3);
+    background-color: var(--primary-color-dark);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(200, 155, 60, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* --- Стили для конкретных кнопок (если нужно переопределить .btn) --- */
+#music-toggle, .details-button, #login-form button {
+}
+
+#login-form button{
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+/* --- Основной контент --- */
+main {
+    padding-top: 90px;
+    padding-bottom: 40px;
+}
+
+.section-wrapper {
+    max-width: var(--content-max-width);
+    margin: 30px auto;
+    padding: 40px;
+    background: var(--section-bg);
+    border: 1px solid rgba(200, 155, 60, 0.2);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    backdrop-filter: blur(8px);
+    width: 100%;
+    position: relative;
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+    .section-wrapper {
+        background-color: rgba(19, 28, 46, 0.95);
+    }
+}
+
+.section-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(200, 155, 60, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.section-wrapper:hover::before {
+    left: 0%;
+}
+
+h1, h2, h3 {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: 'BeaufortforLOL';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+h1 {
+    color: var(--accent-color);
+    font-size: 2.8rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    margin-bottom: 15px;
+    font-family: var(--font-family);
+}
+
+/* --- Карусель Swiper --- */
+.swiper {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(13,23,33,0.8) 100%);
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.2s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* --- Отзывы --- */
+.feedback-item {
+    background-color: rgba(0, 0, 0, 0.6);
+     padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feedback-item img {
+    margin-right: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+
+.feedback-item p {
+    color: var(--secondary-color);
+    font-size: 1rem;
+    text-align: left;
+    max-width: 700px;
+}
+
+/* --- Социальные сети --- */
+#social {
+    margin-top: 30px;
+}
+
+/* --- Стили для иконок социальных сетей --- */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+/* --- Анимации --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.champion-card:hover img {
+    animation: float 3s ease-in-out infinite;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Стили для account.html --- */
+#login-form input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color-light);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    margin-bottom: 10px;
+    font-family: var(--font-family);
+    font-size: 1rem;
+    width: 100%;
+}
+
+#login-form input:focus {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px var(--accent-color);
+    outline: none;
+}
+
+/* --- Стили для champions.html --- */
+.champions-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    width: 100%;
+}
+
+.champion-card {
+    background: var(--section-bg);
+    border: 1px solid rgba(200, 155, 60, 0.3);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 450px;
+}
+
+/* Добавил анимацию наведения */
+.champion-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(200, 155, 60, 0.3);
+    border-color: var(--accent-color);  /* Изменение цвета рамки */
+    background-color: rgba(200, 155, 60, 0.1); /*  Изменение фона */
+}
+
+.champion-card img {
+     object-fit: cover;
+     max-height: 250px;
+}
+
+.champion-title {
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+/* Убрали лишние стили,  теперь сложность регулируется классами difficulty-low, difficulty-moderate, difficulty-high */
+.difficulty-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+
+/* --- Стили для модального окна ---*/
+.champion-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.modal-content {
+    background: var(--section-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    text-align: center;
+    position: relative;
+}
+.modal-content img{
+   margin-top: 20px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+.close-modal-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.modal-content:hover .close-modal-button {
+   color: var(--primary-color-dark);
+   opacity: 1;
+}
+
+.modal-info p {
+    margin-bottom: 10px;
+}
+
+.filters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.filters label{
+   margin-right: 5px;
+}
+.filters input, .filters select{
+    padding: 8px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color-light);
+     font-family: var(--font-family);
+}
+
+/* Стили для описания игры */
+.game-description__intro {
+}
+
+.game-description__goal p strong,
+.game-description__map p strong,
+.game-description__teamplay p strong,
+ .game-description__champions p strong,
+.game-description__abilities p strong
+{
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.game-description__list {
+    list-style: disc;
+    margin-left: 20px;
+    text-align: left;
+}
+.game-description__list li{
+    margin-bottom: 5px;
+}
+
+.game-description__map h2{
+  margin-bottom: 10px;
+}
+
+/* --- Стили для last update.html --- */
+.update-date{
+    color: var(--accent-color);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+/* --- Кнопка "На главную" --- */
+.back-to-home {
+    margin: 20px;
+    display: inline-block;
+}
+
+.all-news-link{
+    color: var(--primary-color);
+    display: inline-block;
+     margin-top: 20px;
+}
+
+.all-news-link:hover{
+    color: var(--primary-color-dark);
+    text-decoration: underline;
+}
+
+/* --- Подвал (footer) --- */
+footer {
+    background-color: var(--background-color);
+    padding: 20px 0;
+    text-align: center;
+     font-family: var(--font-family);
+}
+
+/* --- Медиа-запросы (адаптивность) --- */
+/* Планшеты */
+@media (max-width: 1024px) {
+    .profile-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .swiper {
+        width: 90%;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        top: auto;
+        bottom: 10px;
+        transform: none;
+    }
+
+    .swiper-button-prev {
+        left: 20%;
+    }
+
+    .swiper-button-next {
+        right: 20%;
+    }
+    .news-item {
+       flex-direction: column;
+   }
+   .news-image {
+       width: 100%;
+       height: auto;
+       margin-bottom: 10px;
+   }
+
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feedback-item {
+        flex-direction: column;
+    }
+
+    .feedback-item img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .champions-list {
+        grid-template-columns: 1fr;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        display: none;
+    }
+    .champion-details-content{
+        max-width: 95%;
+        max-height: 95%;
+   }
+    .filters {
+        flex-direction: column;
+    }
+
+    .search-news input{
+       width: 100%;
+    }
+    #no-champions-message{
+        text-align: center;
+    }
+
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    #login-form input, #login-form button {
+        font-size: 0.9rem;
+    }
+
+     .search-news label{
+       display: block;
+       margin-bottom: 5px;
+    }
+    .search-news input {
+        font-size: 0.9rem;
+    }
+
+}
+
+/* --- Стили для секции новостей на главной ---*/
+.news-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(200, 155, 60, 0.2);
+
+}
+
+.news-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: var(--border-radius);
+}
+
+.news-item h3 {
+    margin-bottom: 5px;
+     font-size: 1.25rem;
+}
+
+.news-item time {
+    color: var(--accent-color);
+    font-style: italic;
+    display: block;
+    margin-top: 5px;
+}
+.formatted-date{
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+.login-area{
+    margin-bottom: 40px;
+}
+#login-error{
+    margin-top: 10px;
+    text-align: center;
+}
+.profile-section{
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+}
+
+.profile-info,
+.profile-stats {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: var(--border-radius);
+     margin: 0 10px;
+
+}
+.profile-info ul, .profile-stats ul{
+  text-align: left;
+}
+
+.avatar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.avatar img {
+    border-radius: 50%;
+    max-width: 150px;
+    border: 3px solid var(--accent-color);
+}
+
+.profile-info li, .profile-stats li {
+    margin-bottom: 8px;
+}
+#profile-info-list, #profile-stats-list{
+    padding-left: 0;
+}
+
+/* Стили для фильтров */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.filters label {
+    margin-right: 5px;
+}
+
+.filters input[type="text"],
+.filters select {
+    padding: 8px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color-light);
+    font-family: var(--font-family);
+}
+
+/* Стили для чекбоксов ролей */
+.role-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid rgba(200, 155, 60, 0.3);
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
+.role-filters legend {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.role-filters label {
+  display: flex;
+  align-items: center;
+
+}
+
+.role-filters input[type="checkbox"] {
+    margin-right: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.role-filters input[type="checkbox"]:checked{
+   background-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(200, 155, 60, 0.5);
+}
+
+/* Стили для кнопки сброса */
+#reset-filters {
+}
+
+/* Стили для пагинации */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination-button {
+}
+.pagination-info{
+    color: var(--text-color-light);
+}
+
+/*  -----  СТИЛИ ДЛЯ ЭТАПА 1  -----  */
+.champion-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px solid var(--accent-color);
+}
+
+.champion-stats p {
+    width: 48%;
+    margin-bottom: 5px;
+}
+
+.champion-stats strong {
+    color: var(--accent-color);
+}
+
+.champion-abilities {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid var(--accent-color);
+}
+
+.champion-abilities h4 {
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.champion-abilities p {
+    margin-bottom: 10px;
+}
+
+/* иконки в модальном окне */
+.modal-info .champion-role i {
+     margin-right: 5px;
+     font-size: 1.2em;
+}
+/* Иконки на карточке чемпиона */
+ .champion-role-icons i{
+   margin-right: 5px;
+}
+
+
+/* ----- СТИЛИ ДЛЯ ЭТАПА 3 ----- */
+/*  Активный чекбокс роли (добавляем к label)  */
+.role-filters label.active {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Активный select */
+.filters select.filter-active {
+   border: 2px solid var(--accent-color);
+}
+
+/*  Стили для подсветки поискового запроса  */
+mark {
+    background-color: yellow;
+    color: black;
+}
+
+/*Стили для чекбоксов новостей*/
+.news-categories {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid rgba(200, 155, 60, 0.3);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    justify-content: center;
+
+}
+
+.news-categories legend{
+  color: var(--accent-color);
+  font-weight: bold;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.news-categories label {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.news-categories input[type="checkbox"] {
+    margin-right: 5px;
+     /*  Скрываем стандартный чекбокс */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.news-categories input[type="checkbox"]:checked{
+   background-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(200, 155, 60, 0.5);
+}
+
+/*Стили для профиля*/
+/*  Стили для истории матчей (пример)  */
+.profile-stats ul ul { /* Вложенный список (история матчей) */
+    list-style: disc; /*  Маркеры  */
+    margin-left: 20px;
+    text-align: left;
+}
+
+.profile-stats ul ul li{
+  margin-bottom: 2px;
+}
+/*
+Стили для полоски сложности
+*/
+.champion-difficulty {
+    display: flex;
+    width: 100%;
+    height: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+/*Убираем margin*/
+.difficulty-indicator {
+  margin-left: 0;
+}
+/*Каждая секция свой цвет*/
+.difficulty-low {
+    background-color: green;
+    flex: 1;
+}
+
+.difficulty-moderate {
+      background-color: yellow;
+      flex: 2;
+}
+
+.difficulty-high {
+    background-color: red;
+    flex: 3;
+}
+/* Стили при наведении */
+.champion-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(200, 155, 60, 0.3);
+    border-color: var(--accent-color);
+    background-color: rgba(200, 155, 60, 0.1);
+}
+/* Стили для фокуса при навигации с клавиатуры */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--accent-color); /* Рамка */
+    outline-offset: 2px; /* Отступ рамки */
+}
+
+/*  Для чекбоксов и радиокнопок может понадобиться более сложная стилизация  */
+.role-filters input[type="checkbox"]:focus + label::before {
+    box-shadow: 0 0 5px var(--accent-color);
+}

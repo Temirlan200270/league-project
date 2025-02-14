@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="/code.html" class="back-to-home btn">На главную</a>
+    <header>
+        <h1>Новости</h1>
+        <div class="search-news">
+            <label for="news-search">Поиск новостей:</label>
+            <input type="text" id="news-search" placeholder="Поиск..." role="searchbox" aria-label="Поиск новостей">
+        </div>
+         <!--  Добавляем фильтр по категориям  -->
+        <fieldset class="news-categories">
+            <legend>Категории:</legend>
+            <label><input type="checkbox" value="Обновления игры" checked> Обновления игры</label>
+            <label><input type="checkbox" value="Киберспорт"> Киберспорт</label>
+            <label><input type="checkbox" value="События"> События</label>
+            <label><input type="checkbox" value="TFT"> TFT</label>
+            <label><input type="checkbox" value="Дневники разработчиков">Дневники разработчиков</label>
+            <label><input type="checkbox" value="Образы">Образы</label>
+            <label><input type="checkbox" value="all" checked>Все</label>
+        </fieldset>
+    </header>
+
+    <main>
+      <div class="section-wrapper" style="max-width: var(--content-max-width);">
+        <section id="news">
+            <div id="news-container">
+                <!-- Новости будут добавлены здесь -->
+            </div>
+            <p id="no-results-message" style="display: none;">Новости не найдены.</p>
+            <p class="error-message" style="display: none; color: red;"></p>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Ваше название сайта</p>
+    </footer>
+
+    <script src="/script.js" type="module"></script>
+    <script src="/news-page.js" type="module"></script>
+    
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon (если есть): -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/game description.html">Описание игры</a></li>
+                <li><a href="/champions.html">Чемпионы</a></li>
+                <li class="dropdown">
+                    <a href="/news.html" class="dropbtn">Новости</a>
+                    <ul class="dropdown-content">
+                        <li><a href="/news.html">Все новости</a></li>
+                    </ul>
+                </li>
+                <li><a href="/last update.html">Описание последнего обновления</a></li>
+                <li><a href="/account.html">Личный кабинет</a></li>
+                <li><a href="#" id="music-toggle" class="btn" aria-label="Включить/выключить музыку">Вкл/Выкл музыку</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+         <div class="section-wrapper">
+            <section id="home">
+                <h2>Добро пожаловать в League of Legends</h2>
+                <p>Откройте для себя мир одной из самых популярных онлайн-игр в мире!</p>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section id="carousel">
+                <h2>Галерея</h2>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                           <img src="pictures/placeholder.jpg" data-src="pictures/61bbea241e8054e813c46d38_WestStudio_LOL_Splash_0109.jpg" alt="Арт чемпионов League of Legends" class="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="pictures/placeholder.jpg" data-src="pictures/61bc07bfde84c1b8115f141e_WestStudio_LOL_Splash_0177.jpg" alt="Боевая сцена из игры" class="lazy">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="pictures/placeholder.jpg" data-src="pictures/60412585a67e22ea5d2d8799_WestStudio_LOL_Splash_55.jpg" alt="Фэнтезийный пейзаж вселенной Runeterra" class="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section id="news">
+                <h2>Последние новости</h2>
+                <div id="home-news-container">
+                    <!-- Новости будут динамически добавляться здесь -->
+                </div>
+                 <a href="/news.html" class="all-news-link btn">Все новости</a>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section id="video">
+                <h2>Синематик по игре</h2>
+               <video controls width="60%" class="lazy" data-src="video/Warriors _ Season 2020 Cinematic - League of Legends (ft. 2WEI and Edda Hayes).mp4">
+
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section id="feedback">
+                <h2>Отзывы игроков</h2>
+                <div class="feedback-item">
+                    <img src="pictures/placeholder.jpg" data-src="pictures/1c6d487570bb8950a647a6e333479048.jpg" alt="Аватар игрока Hide on bush" class="lazy">
+
+                    <p>Hide on bush: Играю с первого сезона игры, и с каждым новым сезоном они добавляют что-то новое в игру, делая её ещё лучше...</p>
+                </div>
+                <div class="feedback-item">
+                <img src="pictures/placeholder.jpg" data-src="pictures/7e9ccc5acceb57ca520f1ce17766b22a.jpg" alt="Аватар игрока I love collapse" class="lazy">
+
+                   <p>I love collapse: Игра классная всем рекомендую, очень удобно играть с друзьями в одной команде!</p>
+                </div>
+                <div class="feedback-item">
+                <img src="pictures/placeholder.jpg" data-src="pictures/31a244f1aaf46e506bef56d64ba49238.jpg" alt="Аватар игрока MIRAI" class="lazy">
+                    <p>MIRAI: Отличная графика, классные ивенты, бесплатная игра и можно играть с телефона!</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section id="social">
+                <h2>Мы в социальных сетях</h2>
+                <div class="social-icons">
+                    <a href="https://facebook.com/leagueoflegends" target="_blank" aria-label="League of Legends on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/leagueoflegends" target="_blank" aria-label="League of Legends on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/leagueoflegends" target="_blank" aria-label="League of Legends on Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 League of Legends</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+    <script src="/script.js" type="module"></script>
+
+</body>
+</html>
