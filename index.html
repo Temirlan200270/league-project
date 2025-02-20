@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=1">
+    <!--  ПРАВИЛЬНОЕ ПОДКЛЮЧЕНИЕ SWIPER -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- Подключение Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-page="code">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="game description.html">Описание игры</a></li>
+                <li><a href="champions.html">Чемпионы</a></li>
+                <li class="dropdown">
+                    <a href="news.html" class="dropbtn">Новости</a>
+                    <ul class="dropdown-content">
+                        <li><a href="news.html">Все новости</a></li>
+                    </ul>
+                </li>
+                <li><a href="last update.html">Описание последнего обновления</a></li>
+                <li><a href="account.html">Личный кабинет</a></li>
+                <li><a href="#" id="music-toggle" class="btn">Вкл/Выкл музыку</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="welcome-section">
+            <h1 class="main-title">Добро пожаловать в League of Legends</h1>
+            <p class="welcome-text">Откройте для себя мир одной из самых популярных онлайн-игр в мире!</p>
+        </div>
+
+        <div class="section-wrapper">
+            <h2 class="section-title">Галерея</h2>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="pictures/swiper-1.jpg" alt="League of Legends скриншот 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="pictures/swiper-2.jpg" alt="League of Legends скриншот 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="pictures/swiper-3.jpg" alt="League of Legends скриншот 3">
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+
+        <div class="section-wrapper">
+            <section class="cinematic-section">
+                <h2 class="section-title">Синематик по игре</h2>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aR-KAldshAE" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section class="reviews">
+                <h2 class="section-title">Отзывы игроков</h2>
+                <div class="review-card">
+                    <img src="pictures/1c6d487570bb8950a647a6e333479048.jpg" alt="Аватар игрока Hide on bush" class="review-avatar lazy" loading="lazy">
+                    <div class="review-content">
+                        <p>Hide on bush: Играю с первого сезона игры, и с каждым новым сезоном они добавляют что-то новое в игру, делая её ещё лучше...</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="pictures/7e9ccc5acceb57ca520f1ce17766b22a.jpg" alt="Аватар игрока I love collapse" class="review-avatar lazy" loading="lazy">
+                    <div class="review-content">
+                        <p>I love collapse: Игра классная всем рекомендую, очень удобно играть с друзьями в одной команде!</p>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <img src="pictures/31a244f1aaf46e506bef56d64ba49238.jpg" alt="Аватар игрока MIRAI" class="review-avatar lazy" loading="lazy">
+                    <div class="review-content">
+                        <p>MIRAI: Отличная графика, классные ивенты, бесплатная игра и можно играть с телефона!</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="section-wrapper">
+            <section class="social">
+                <h2 class="section-title">Мы в социальных сетях</h2>
+                <div class="social-buttons">
+                    <a href="https://facebook.com/leagueoflegends" target="_blank" class="social-button" aria-label="League of Legends on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </a>
+                    <a href="https://twitter.com/leagueoflegends" target="_blank" class="social-button" aria-label="League of Legends on Twitter">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </a>
+                    <a href="https://instagram.com/leagueoflegends" target="_blank" class="social-button" aria-label="League of Legends on Instagram">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 League of Legends</p>
+    </footer>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="news-bundle.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="news-utils.js"></script>
+</body>
+</html>

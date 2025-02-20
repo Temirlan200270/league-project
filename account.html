@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="index.html" class="back-to-home">На главную</a>
+    <header>
+        <h1>Личный кабинет</h1>
+    </header>
+    <main>
+     <div class="section-wrapper">
+        <section class="profile-section">
+           <div class="login-area">
+                <h2>Вход</h2>
+                <div id="login-form">
+                    <label for="login-username">Имя пользователя:</label> <br>
+                    <input type="text" id="login-username" placeholder="Имя пользователя"> <br>
+                    <label for="login-password">Пароль:</label> <br>
+                    <input type="password" id="login-password" placeholder="Пароль"> <br>
+                    <button id="login-button">Войти</button>
+                    <p id="login-error" style="color: red; display: none;"></p>
+                </div>
+            </div>
+
+            <div class="profile-info" style="display: none;">
+                <h2>Информация о пользователе</h2>
+                <div class="avatar">
+                    <img src="" alt="Аватар" id="user-avatar">
+                </div>
+                <ul id="profile-info-list">
+                    <!-- Информация о пользователе добавится здесь -->
+                </ul>
+            </div>
+            <div class="profile-stats" style="display: none;">
+                <h2>Статистика</h2>
+                <ul id="profile-stats-list">
+                    <!-- Статистика добавится здесь -->
+                </ul>
+            </div>
+        </section>
+     </div>
+    </main>
+    <footer>
+        <p>© 2024 Ваше название сайта</p>
+    </footer>
+
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="account.js"></script>
+</body>
+</html>

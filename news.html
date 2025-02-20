@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости League of Legends</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="game description.html">Описание игры</a></li>
+                <li><a href="champions.html">Чемпионы</a></li>
+                <li><a href="news.html" class="active">Новости</a></li>
+                <li><a href="last update.html">Обновления</a></li>
+                <li><a href="account.html">Личный кабинет</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="news-page">
+        <div class="news-container">
+            <h1>Последние новости</h1>
+            
+            <!-- Фильтры и поиск -->
+            <div class="filters-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">Все новости</button>
+                    <button class="filter-btn" data-category="updates">Обновления</button>
+                    <button class="filter-btn" data-category="events">События</button>
+                    <button class="filter-btn" data-category="esports">Киберспорт</button>
+                </div>
+                <div class="search-wrapper">
+                    <input type="text" 
+                           id="news-search" 
+                           class="champion-search" 
+                           placeholder="Поиск новостей...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <!-- Сетка новостей -->
+            <div class="news-grid">
+                <!-- Карточки новостей будут добавляться через JavaScript -->
+            </div>
+
+            <!-- Пагинация -->
+            <div class="pagination" id="news-pagination">
+                <!-- Пагинация будет добавлена через JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 League of Legends. Все права защищены.</p>
+    </footer>
+
+    <!-- Скрипты в правильном порядке -->
+    <script type="module" src="utils.js"></script>
+    <script type="module" src="data/constants.js"></script>
+    <script type="module" src="news-utils.js"></script>
+    <script type="module" src="news-bundle.js"></script>
+</body>
+</html>
