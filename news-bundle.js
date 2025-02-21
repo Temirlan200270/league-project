@@ -2,9 +2,8 @@
 
 import newsUtils from './news-utils.js';
 import utils from './utils.js';
-import { db } from './firebase-config.js'; // Импорт db
-import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-import { NEWS_CATEGORIES } from './data/constants.js';
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { NEWS_CATEGORIES } from './data/constants.js'; //  ИСПРАВЛЕНО:  ./data/constants.js
 
 
 const NEWS_PER_PAGE = 9;
@@ -28,23 +27,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Добавляем функцию загрузки данных
 	function loadNewsData() {
-      const newsRef = ref(db, 'news');
-      onValue(newsRef, (snapshot) => {
-        const newsDataRaw = snapshot.val();
+		    const db = window.db;  //  Используем window.db, который мы определили в index.html
+            const newsRef = ref(db, 'news');  //  "news" - это узел (папка) в твоей базе данных
+            onValue(newsRef, (snapshot) => { //  Слушаем изменения
+            const news = snapshot.val();
+                if(news){
+                    newsData = Object.values(news); // Преобразуем объект в массив
+                    displayFilteredNews();
+                } else {
+                  console.log("Нет данных новостей");
+                   newsGrid.innerHTML = '<p>Не удалось загрузить новости.</p>'; // Показываем сообщение об ошибке
+                }
 
-        if (newsDataRaw) {
-            // Если данные лежат как элементы массива (news/0, news/1, ...):
-            newsData = Object.entries(newsDataRaw).map(([key, value]) => value);
-
-          displayFilteredNews();
-        } else {
-          console.log("Нет данных новостей");
-          newsGrid.innerHTML = '<p>Новости отсутствуют.</p>'; //  Более дружелюбное сообщение
-        }
-      }, (error) => {
-        console.error('Ошибка при загрузке данных:', error);
-        newsGrid.innerHTML = '<p>Не удалось загрузить новости. Пожалуйста, попробуйте позже.</p>';
-      });
+              }, (error) => { // Добавлена обработка ошибок
+                console.error('Ошибка при загрузке данных:', error);
+                newsGrid.innerHTML = '<p>Не удалось загрузить новости.</p>'; // Показываем сообщение об ошибке
+              });
     }
 
     // Фильтрация и отображение новостей
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         newsUtils.displayNews(paginatedNews); //  Используем newsUtils
 
-       // Обновление пагинации  // ИСПРАВЛЕНО:  Удалена utils.updatePagination
        updatePagination(filteredNews.length); // Вызываем обычную функцию
     }
 

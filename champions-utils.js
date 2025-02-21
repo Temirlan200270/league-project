@@ -42,6 +42,7 @@ function filterChampions(champions, filters) {
     });
 }
 
+// Единая функция создания карточки чемпиона (ИЗМЕНЕНА)
 function createChampionCard(champion) {
     if (!champion) return '';
 

@@ -1,9 +1,8 @@
-// --- champions-bundle.js ---
-import { getDifficultyNumber, getDifficultyStars, filterChampions, createChampionCard } from './champions-utils.js';
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import championsUtils from './champions-utils.js';
 import utils from './utils.js';
-import { roleCategories, difficultyLevels } from './data/constants.js';
-import { db } from './firebase-config.js'; // Импортируем db
-import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { roleCategories, difficultyLevels } from './data/constants.js'; // Импорт констант
+import { db } from './firebase-config.js'; //  Импортируем db!
 
 'use strict';
 
@@ -14,11 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('champion-search');
     const noResults = document.getElementById('no-results');
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const paginationContainer = document.getElementById('pagination-container');
+    const paginationContainer = document.getElementById('pagination-container'); // Добавлено
 
-    // Проверяем наличие всех необходимых элементов
-    if (!championsContainer || !searchInput || !noResults || filterButtons.length === 0 || !paginationContainer) {
-        console.error('Необходимые элементы не найдены на странице.');
+    if (!championsContainer) {
+        console.error('Необходимые элементы не найдены');
         return;
     }
 
@@ -28,112 +26,108 @@ document.addEventListener('DOMContentLoaded', function() {
         search: ''
     };
     let currentPage = 1;
-    let championsData = []; // Здесь будем хранить данные о чемпионах
+    let championsData = []; // Переменная для хранения данных
 
-    // ---  ФУНКЦИЯ ЗАГРУЗКИ ДАННЫХ (Firebase) ---
-     async function loadChampionsData() {
-        const championsRef = ref(db, '/'); //  Изменено:  Указываем корень базы данных
+     //  Функция загрузки данных (ИЗМЕНЕНА)
+    function loadChampionsData() {
+          const championsRef = ref(db, 'champions'); //  Ссылка на 'champions'
 
-        onValue(championsRef, (snapshot) => {
-            const championsDataRaw = snapshot.val();
-
-             if (championsDataRaw) {
-                // Преобразуем объект в массив, если данные хранятся с числовыми ключами
-                championsData = Object.values(championsDataRaw);
-                console.log("Загруженные данные чемпионов из Firebase:", championsData); //  ПРОВЕРКА
-                displayChampions(championsData); // Отображаем чемпионов
+          onValue(championsRef, (snapshot) => { //  Используем onValue
+            const data = snapshot.val();
+              if (data) {
+                 championsData = Object.values(data); // Преобразуем объект в массив
+                displayChampions(championsData); //  Отображаем
             } else {
-                console.log("Нет данных о чемпионах в Firebase.");
-                championsContainer.innerHTML = '<p>Не удалось загрузить данные чемпионов.</p>';
+              console.log("Нет данных чемпионов.");
+              championsContainer.innerHTML = '<p>Не удалось загрузить данные чемпионов.</p>';
             }
-        }, (error) => {
-            console.error('Ошибка при загрузке данных из Firebase:', error);
+
+          }, (error) => {
+            console.error("Ошибка при загрузке данных:", error);
             championsContainer.innerHTML = '<p>Не удалось загрузить данные чемпионов.</p>';
-        });
+          });
     }
 
-   // Отображение чемпионов с пагинацией
+    // Отображение чемпионов с пагинацией
     function displayChampions(champions) {
-      console.log("Данные чемпионов для отображения:", champions); // ПРОВЕРКА: Данные, переданные в displayChampions
-      const filteredChamps = filterChampions(champions, currentFilters); // ИЗМЕНЕНО:  Убрали championsUtils.
+        const filteredChamps = championsUtils.filterChampions(champions, currentFilters); //  Убрали championsUtils
 
+        if (filteredChamps.length === 0) {
+            if (noResults) noResults.style.display = 'block';
+            championsContainer.innerHTML = '';
+              utils.updatePagination(
+              paginationContainer,
+              currentPage,
+              CHAMPS_PER_PAGE,
+              0, //  Всего элементов 0
+              displayChampions
+            );  //  Убрали utils, добавили displayChampions
+            return;
+        }
 
-      if (filteredChamps.length === 0) {
-          noResults.style.display = 'block';
-          championsContainer.innerHTML = '';
-          utils.updatePagination(
-            paginationContainer,
-            currentPage,
-            CHAMPS_PER_PAGE,
-            0,
-            displayChampions
+        if (noResults) noResults.style.display = 'none';
+
+        const startIndex = (currentPage - 1) * CHAMPS_PER_PAGE;
+        const paginatedChamps = filteredChamps.slice(startIndex, startIndex + CHAMPS_PER_PAGE);
+
+        championsContainer.innerHTML = paginatedChamps
+           .map(champion => championsUtils.createChampionCard(champion))
+           .join('')
+          || '<p>Не удалось отобразить чемпионов</p>'; //  Вывод сообщения в случае ошибки
+           // ИЗМЕНЕНО:  Используем импортированную функцию updatePagination
+          utils.updatePagination( //  Используем импортированную
+              paginationContainer,
+              currentPage,
+              CHAMPS_PER_PAGE,
+              filteredChamps.length,
+               (newPage) => {
+                 currentPage = newPage;
+                 displayChampions(championsData); //  Используем championsData
+               }
           );
-          return;
-      }
 
-      noResults.style.display = 'none';
-
-      const startIndex = (currentPage - 1) * CHAMPS_PER_PAGE;
-      const paginatedChamps = filteredChamps.slice(startIndex, startIndex + CHAMPS_PER_PAGE);
-
-
-      championsContainer.innerHTML = paginatedChamps
-          .map(champion => createChampionCard(champion)) // ИЗМЕНЕНО: Убрали championsUtils.
-          .join('')
-        || '<p>Не удалось отобразить чемпионов</p>';
-
-        utils.updatePagination(
-            paginationContainer,
-            currentPage,
-            CHAMPS_PER_PAGE,
-            filteredChamps.length,
-            (newPage) => {
-              currentPage = newPage;
-              displayChampions(championsData);
-            }
-        );
     }
 
 
+    // Обработчики событий (ИЗМЕНЕНЫ)
+   filterButtons.forEach(button => {
+     button.addEventListener('click', function() {
+         //  Классы для подсветки
+         filterButtons.forEach(btn => btn.classList.remove('active'));
+         this.classList.add('active');
 
-    // Обработчики событий для кнопок фильтрации
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
+         const role = this.dataset.role;
+         const difficulty = this.dataset.difficulty;
 
-            const role = this.dataset.role;
-            const difficulty = this.dataset.difficulty;
-
-            if (role) {
-                if (role === 'all') {
-                    currentFilters.roles = ['all'];
-                } else {
-                    if (currentFilters.roles.includes('all')) {
+         if (role) {
+             if (role === 'all') {
+                 currentFilters.roles = ['all'];
+             } else {
+                  //  Обновленная логика фильтрации по ролям
+                 if (currentFilters.roles.includes('all')) {
+                     currentFilters.roles = [role];
+                 } else {
+                     currentFilters.roles = currentFilters.roles.includes(role)
+                         ? currentFilters.roles.filter(r => r !== role)
+                         : [...currentFilters.roles, role];
+                     // Если выбраны и другие роли, и "все", то оставляем только выбранную роль
+                     if(currentFilters.roles.length > 1 && currentFilters.roles.includes('all')){
                         currentFilters.roles = [role];
-                    } else {
-                        currentFilters.roles = currentFilters.roles.includes(role)
-                            ? currentFilters.roles.filter(r => r !== role)
-                            : [...currentFilters.roles, role];
+                     }
+                 }
+             }
+         }
 
-                        if(currentFilters.roles.length > 1 && currentFilters.roles.includes('all')){
-                            currentFilters.roles = [role];
-                        }
-                    }
-                }
-            }
+         if (difficulty) {
+             currentFilters.difficulty = difficulty === 'all' ? 'all' : parseInt(difficulty, 10); //  Преобразуем в число
+         }
+
+         currentPage = 1;
+         displayChampions(championsData); //  Используем championsData
+     });
+ });
 
 
-            if (difficulty) {
-                currentFilters.difficulty = difficulty === 'all' ? 'all' : parseInt(difficulty, 10);
-            }
-
-            currentPage = 1; // Сбрасываем страницу при изменении фильтров
-            displayChampions(championsData); //  Используем championsData
-        });
-    });
-
-    // Обработчик события для поля поиска (с использованием debounce)
     if (searchInput) {
         searchInput.addEventListener('input', utils.debounce(() => {
             currentFilters.search = searchInput.value.trim().toLowerCase();
@@ -142,6 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300));
     }
 
-    // Загрузка данных и инициализация страницы
-    loadChampionsData();
+    //  Инициализация
+    loadChampionsData(); //  ЗАГРУЖАЕМ ДАННЫЕ
 });

@@ -21,50 +21,47 @@ function animateOnScroll(selector = '.fade-in') { // Сделали селект
 }
 
 // Добавлена функция для обновления пагинации
-function updatePagination(container, currentPage, itemsPerPage, totalItems, displayFunction) {
-        if (!container) return;
+export function updatePagination(container, currentPage, itemsPerPage, totalItems, displayFunction) {
+    if (!container) return;
 
-        const totalPages = Math.ceil(totalItems / itemsPerPage);
-        container.innerHTML = '';
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    container.innerHTML = '';
 
-        // Кнопка "Назад"
-        if (currentPage > 1) {
-            const prevButton = document.createElement('button');
-            prevButton.className = 'pagination-btn';
-            prevButton.textContent = 'Назад';
-            prevButton.onclick = () => {
-                displayFunction(currentPage - 1); // Передаём новую страницу
-            };
-            container.appendChild(prevButton);
-        }
-
-        // Номера страниц
-        for (let i = 1; i <= totalPages; i++) {
-            const pageButton = document.createElement('button');
-            pageButton.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
-            pageButton.textContent = i;
-            pageButton.onclick = () => {
-                displayFunction(i); // Передаём новую страницу
-            };
-            container.appendChild(pageButton);
-        }
-
-        // Кнопка "Вперед"
-        if (currentPage < totalPages) {
-            const nextButton = document.createElement('button');
-            nextButton.className = 'pagination-btn';
-            nextButton.textContent = 'Вперед';
-            nextButton.onclick = () => {
-                displayFunction(currentPage + 1); // Передаём новую страницу
-            };
-            container.appendChild(nextButton);
-        }
+    // Кнопка "Назад"
+    if (currentPage > 1) {
+        const prevButton = document.createElement('button');
+        prevButton.className = 'pagination-btn';
+        prevButton.textContent = 'Назад';
+        prevButton.onclick = () => {
+            displayFunction(currentPage - 1); // Передаём новую страницу
+        };
+        container.appendChild(prevButton);
     }
 
+    // Номера страниц
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+        pageButton.textContent = i;
+        pageButton.onclick = () => {
+            displayFunction(i); // Передаём новую страницу
+        };
+        container.appendChild(pageButton);
+    }
 
-// Экспортируем утилиты
-export default {  // ИЗМЕНЕНО:  Используем export default
-    debounce,
-    animateOnScroll,
-    updatePagination // Добавили в экспорт
-};
+    // Кнопка "Вперед"
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement('button');
+        nextButton.className = 'pagination-btn';
+        nextButton.textContent = 'Вперед';
+        nextButton.onclick = () => {
+            displayFunction(currentPage + 1); // Передаём новую страницу
+        };
+        container.appendChild(nextButton);
+    }
+}
+
+export default{
+  debounce,
+  animateOnScroll
+}
