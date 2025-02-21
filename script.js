@@ -1,8 +1,7 @@
 // --- START OF FILE script.js ---
 
 'use strict';
-import { db } from './firebase-config.js';
-import utils from './utils.js';
+import { debounce, animateOnScroll } from './utils.js';
 
 // Обработчик ошибок загрузки видео. Вставляет сообщение об ошибке ПОСЛЕ видеоэлемента.
 function handleVideoError(element) {
@@ -231,10 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFadeInAnimations();
     setupErrorHandling();
     lazyLoad();
-    utils.animateOnScroll(); // Вызываем импортированную функцию
+    animateOnScroll(); //  animateOnScroll - без utils.
 
-    window.addEventListener('scroll', utils.debounce(() => { // Используем импортированный debounce
-        utils.animateOnScroll();
-    }, 100)); // 100 мс задержка
-
+    window.addEventListener('scroll', debounce(() => { // debounce - без utils.
+        animateOnScroll(); // animateOnScroll - без utils.
+    }, 100));
 });

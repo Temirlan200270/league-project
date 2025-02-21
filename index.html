@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <!-- Подключение Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<script type="module" src="firebase-config.js"></script>
 </head>
 <body data-page="code">
     <header>
@@ -55,6 +56,16 @@
             </div>
         </div>
 
+	    <div class="section-wrapper">
+            <section class="latest-news-section">
+                <h2 class="section-title">Последние новости</h2>
+                <div class="news-grid">
+                    <!-- Сюда будут добавляться новости через JavaScript -->
+                </div>
+                <a href="news.html" class="view-all-button">Все новости</a>
+            </section>
+        </div>
+
         <div class="section-wrapper">
             <section class="cinematic-section">
                 <h2 class="section-title">Синематик по игре</h2>
@@ -66,30 +77,7 @@
             </section>
         </div>
 
-        <div class="section-wrapper">
-            <section class="reviews">
-                <h2 class="section-title">Отзывы игроков</h2>
-                <div class="review-card">
-                    <img src="pictures/1c6d487570bb8950a647a6e333479048.jpg" alt="Аватар игрока Hide on bush" class="review-avatar lazy" loading="lazy">
-                    <div class="review-content">
-                        <p>Hide on bush: Играю с первого сезона игры, и с каждым новым сезоном они добавляют что-то новое в игру, делая её ещё лучше...</p>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <img src="pictures/7e9ccc5acceb57ca520f1ce17766b22a.jpg" alt="Аватар игрока I love collapse" class="review-avatar lazy" loading="lazy">
-                    <div class="review-content">
-                        <p>I love collapse: Игра классная всем рекомендую, очень удобно играть с друзьями в одной команде!</p>
-                    </div>
-                </div>
-                <div class="review-card">
-                    <img src="pictures/31a244f1aaf46e506bef56d64ba49238.jpg" alt="Аватар игрока MIRAI" class="review-avatar lazy" loading="lazy">
-                    <div class="review-content">
-                        <p>MIRAI: Отличная графика, классные ивенты, бесплатная игра и можно играть с телефона!</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
+        
         <div class="section-wrapper">
             <section class="social">
                 <h2 class="section-title">Мы в социальных сетях</h2>
@@ -114,10 +102,10 @@
     <footer>
         <p>© 2024 League of Legends</p>
     </footer>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module" src="news-bundle.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="script.js"></script>
     <script type="module" src="utils.js"></script>
-    <script type="module" src="news-utils.js"></script>
+    <script type="module" src="code.js"></script>
+
 </body>
 </html>

@@ -61,7 +61,7 @@ export function updatePagination(container, currentPage, itemsPerPage, totalItem
     }
 }
 
-export default{
-  debounce,
-  animateOnScroll
-}
+export {  // ИЗМЕНЕНО:  Используем named export
+    debounce,
+    animateOnScroll,
+};

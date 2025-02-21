@@ -1,6 +1,9 @@
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-import championsUtils from './champions-utils.js';
-import utils from './utils.js';
+import { getDifficultyNumber, getDifficultyStars, filterChampions, createChampionCard } from './champions-utils.js';
+
+//utils.js
+import {debounce, animateOnScroll, updatePagination} from './utils.js'; // ИСПРАВЛЕНО
+
 import { roleCategories, difficultyLevels } from './data/constants.js'; // Импорт констант
 import { db } from './firebase-config.js'; //  Импортируем db!
 
@@ -13,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('champion-search');
     const noResults = document.getElementById('no-results');
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const paginationContainer = document.getElementById('pagination-container'); // Добавлено
+    const paginationContainer = document.getElementById('pagination-container');
 
     if (!championsContainer) {
         console.error('Необходимые элементы не найдены');
@@ -30,13 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
      //  Функция загрузки данных (ИЗМЕНЕНА)
     function loadChampionsData() {
-          const championsRef = ref(db, 'champions'); //  Ссылка на 'champions'
+        const championsRef = ref(db, '/'); //  Ссылка на champions
 
           onValue(championsRef, (snapshot) => { //  Используем onValue
             const data = snapshot.val();
               if (data) {
                  championsData = Object.values(data); // Преобразуем объект в массив
-                displayChampions(championsData); //  Отображаем
+                displayChampions(championsData);
             } else {
               console.log("Нет данных чемпионов.");
               championsContainer.innerHTML = '<p>Не удалось загрузить данные чемпионов.</p>';
@@ -50,18 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Отображение чемпионов с пагинацией
     function displayChampions(champions) {
-        const filteredChamps = championsUtils.filterChampions(champions, currentFilters); //  Убрали championsUtils
+        const filteredChamps = filterChampions(champions, currentFilters); // Исправлено
 
         if (filteredChamps.length === 0) {
             if (noResults) noResults.style.display = 'block';
             championsContainer.innerHTML = '';
-              utils.updatePagination(
+              updatePagination( // Исправлено
               paginationContainer,
               currentPage,
               CHAMPS_PER_PAGE,
               0, //  Всего элементов 0
               displayChampions
-            );  //  Убрали utils, добавили displayChampions
+            );
             return;
         }
 
@@ -71,11 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const paginatedChamps = filteredChamps.slice(startIndex, startIndex + CHAMPS_PER_PAGE);
 
         championsContainer.innerHTML = paginatedChamps
-           .map(champion => championsUtils.createChampionCard(champion))
+           .map(champion => createChampionCard(champion)) // Исправлено
            .join('')
-          || '<p>Не удалось отобразить чемпионов</p>'; //  Вывод сообщения в случае ошибки
-           // ИЗМЕНЕНО:  Используем импортированную функцию updatePagination
-          utils.updatePagination( //  Используем импортированную
+          || '<p>Не удалось отобразить чемпионов</p>';
+          updatePagination( //  Используем импортированную
               paginationContainer,
               currentPage,
               CHAMPS_PER_PAGE,
@@ -92,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обработчики событий (ИЗМЕНЕНЫ)
    filterButtons.forEach(button => {
      button.addEventListener('click', function() {
-         //  Классы для подсветки
          filterButtons.forEach(btn => btn.classList.remove('active'));
          this.classList.add('active');
 
@@ -103,14 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
              if (role === 'all') {
                  currentFilters.roles = ['all'];
              } else {
-                  //  Обновленная логика фильтрации по ролям
                  if (currentFilters.roles.includes('all')) {
                      currentFilters.roles = [role];
                  } else {
                      currentFilters.roles = currentFilters.roles.includes(role)
                          ? currentFilters.roles.filter(r => r !== role)
                          : [...currentFilters.roles, role];
-                     // Если выбраны и другие роли, и "все", то оставляем только выбранную роль
                      if(currentFilters.roles.length > 1 && currentFilters.roles.includes('all')){
                         currentFilters.roles = [role];
                      }
@@ -129,13 +128,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     if (searchInput) {
-        searchInput.addEventListener('input', utils.debounce(() => {
+        searchInput.addEventListener('input', debounce(() => { // ИСПРАВЛЕНО
             currentFilters.search = searchInput.value.trim().toLowerCase();
             currentPage = 1;
-            displayChampions(championsData); //  Используем championsData
+            displayChampions(championsData);
         }, 300));
     }
 
     //  Инициализация
     loadChampionsData(); //  ЗАГРУЖАЕМ ДАННЫЕ
+    animateOnScroll(); // ИСПРАВЛЕНО
 });

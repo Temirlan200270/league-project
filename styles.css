@@ -520,6 +520,7 @@ main {
 
 /* --- Отзывы игроков --- */
 .reviews-section {
+    opacity: 0;
     text-align: center;
 }
 
@@ -3856,3 +3857,22 @@ body[data-page="code"] section {
 .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/*  Убираем лишнее, оставляем только нужное для .news-card */
+.news-card .news-excerpt {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Количество строк */
+    -webkit-box-orient: vertical;
+    line-height: 1.4em;  /* ПОДБЕРИТЕ ПОД ВАШ ШРИФТ! */
+    max-height: 4.2em;   /* 3 * 1.4 = 4.2  */
+}
+
+/*  Стили для новостей на ГЛАВНОЙ странице */
+.latest-news-section .news-grid {
+    display: grid; /* Используем grid */
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+    gap: 1.5rem;  /* Отступы */
+    min-height: 550px; /* Минимальная высота (ПОДБЕРИТЕ!) */
+}
