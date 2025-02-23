@@ -1,6 +1,5 @@
 # 🎮 League of Legends Fan Site | Демо-проект для портфолио
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/.../deploy-status)](https://app.netlify.com/sites/.../deploys)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
@@ -8,8 +7,6 @@
 Демонстрационный фанатский сайт по вселенной League of Legends, созданный для демонстрации навыков веб-разработки. 
 
 🌐 **Демо-версия:** [elaborate-crostata-2d9540.netlify.app](https://elaborate-crostata-2d9540.netlify.app/)
-
-![Скриншот главной страницы](https://via.placeholder.com/800x400?text=Main+Page+Screenshot)
 
 ## 🚀 Особенности
 
@@ -65,6 +62,6 @@ const getChampions = async () => {
 
 ## 👨💻 Автор
 **Ракымжан Темирлан**  
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github)](https://github.com/Temirlan200270)
-[![LinkedIn]([https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/темирлан-рахимжанов-9931a8264/)]
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github)](https://github.com/Temirlan200270)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/%D1%82%D0%B5%D0%BC%D0%B8%D1%80%D0%BB%D0%B0%D0%BD-%D1%80%D0%B0%D1%85%D0%B8%D0%BC%D0%B6%D0%B0%D0%BD%D0%BE%D0%B2-9931a8264/)
 
