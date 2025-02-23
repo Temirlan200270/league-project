@@ -1,12 +1,12 @@
-import { db } from './firebase-config.js'; // Импорт db
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { initializeFirebase } from './firebase-config.js';
 
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function() {
   // ... (все DOM-элементы и проверки) ...
   const loginButton = document.getElementById('login-button');
-  const loginUsernameInput = document.getElementById('login-username'); //  Добавлено!
+  const loginUsernameInput = document.getElementById('login-username');
   const loginPasswordInput = document.getElementById('login-password');
   const loginArea = document.querySelector('.login-area');
   const loginError = document.getElementById('login-error');
@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const userAvatar = document.getElementById('user-avatar');
   const profileInfoList = document.getElementById('profile-info-list');
   const profileStatsList = document.getElementById('profile-stats-list');
+
+  // ИНИЦИАЛИЗАЦИЯ FIREBASE
+    const db = initializeFirebase(window.firebaseConfig);
 
    loginButton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -68,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                  console.log("Нет данных о пользователях.");
                 loginError.style.display = 'block';
-                loginError.textContent = 'Нет данных о пользователях.';  // Или другое сообщение
+                loginError.textContent = 'Нет данных о пользователях.'; 
                 profileInfo.style.display = 'none';
                 profileStats.style.display = 'none';
             }
