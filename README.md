@@ -1,4 +1,3 @@
-```markdown
 # 🎮 League of Legends Fan Site | Демо-проект для портфолио
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/.../deploy-status)](https://app.netlify.com/sites/.../deploys)
