@@ -63,5 +63,5 @@ const getChampions = async () => {
 ## 👨💻 Автор
 **Ракымжан Темирлан**  
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github)](https://github.com/Temirlan200270)  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/%D1%82%D0%B5%D0%BC%D0%B8%D1%80%D0%BB%D0%B0%D0%BD-%D1%80%D0%B0%D1%85%D0%B8%D0%BC%D0%B6%D0%B0%D0%BD%D0%BE%D0%B2-9931a8264/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/темирлан-рахимжанов-9931a8264/)
 
