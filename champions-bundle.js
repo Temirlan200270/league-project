@@ -8,7 +8,7 @@ import { roleCategories, difficultyLevels } from './data/constants.js';
 
 const CHAMPS_PER_PAGE = 12;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const championsContainer = document.getElementById('champions-container');
     const searchInput = document.getElementById('champion-search');
     const noResults = document.getElementById('no-results');
@@ -29,7 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let championsData = [];
 
     // ИНИЦИАЛИЗАЦИЯ FIREBASE
-    const db = initializeFirebase(window.firebaseConfig);
+    const db = await initializeFirebase();
+
+    if (!db) { // Проверка на null
+      console.error('Failed to initialize Firebase');
+      championsContainer.innerHTML = '<p>Ошибка инициализации Firebase. Попробуйте обновить страницу.</p>';
+      return;
+    }
+
 
     function loadChampionsData() {
         const championsRef = ref(db, '/');
@@ -86,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
           );
 
     }
+
 
    filterButtons.forEach(button => {
      button.addEventListener('click', function() {

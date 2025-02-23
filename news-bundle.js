@@ -9,7 +9,7 @@ import { initializeFirebase } from './firebase-config.js';
 
 const NEWS_PER_PAGE = 9;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     console.log('DOM loaded');
 
     const newsGrid = document.querySelector('.news-grid');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     // ИНИЦИАЛИЗАЦИЯ FIREBASE
-    const db = initializeFirebase(window.firebaseConfig);
+    const db = await initializeFirebase(window.firebaseConfig);
 
 	function loadNewsData() {
         const newsRef = ref(db, 'news');

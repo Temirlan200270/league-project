@@ -3,9 +3,14 @@ import newsUtils from './news-utils.js';
 import { initializeFirebase } from './firebase-config.js';
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
   // ИНИЦИАЛИЗАЦИЯ FIREBASE
-  const db = initializeFirebase(window.firebaseConfig);
+  const db = await initializeFirebase(window.firebaseConfig);
+  if (!db) { // Проверка на null
+    console.error('Failed to initialize Firebase');
+    // Можно добавить здесь отображение сообщения об ошибке на странице
+    return;
+  }
 
   // Получаем новости из Firebase
   const newsRef = ref(db, 'news');
