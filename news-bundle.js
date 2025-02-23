@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Элемент news-grid не найден');
         return;
     }
-     // ИНИЦИАЛИЗАЦИЯ FIREBASE
-     const db = initializeFirebase(window.firebaseConfig);
+    // ИНИЦИАЛИЗАЦИЯ FIREBASE
+    const db = initializeFirebase(window.firebaseConfig);
 
 	function loadNewsData() {
         const newsRef = ref(db, 'news');

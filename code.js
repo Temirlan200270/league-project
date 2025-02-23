@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const news = snapshot.val();
       if (news) {
             const newsArray = Object.values(news);
-            displayLatestNews(newsArray); // вызываем функцию
+            displayLatestNews(newsArray);
       } else {
           console.log("Нет данных новостей");
           const newsContainer = document.querySelector('.latest-news-section .news-grid');
@@ -43,7 +43,6 @@ function displayLatestNews(allNews) {
     const newsContainer = document.querySelector('.latest-news-section .news-grid');
 
     if (newsContainer) {
-        // ИСПОЛЬЗУЕМ newsUtils.createNewsCard!
         newsContainer.innerHTML = latestNews.map(item => newsUtils.createNewsCard(item)).join('');
     }
   } catch (error) {
