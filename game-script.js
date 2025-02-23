@@ -1,7 +1,7 @@
-// --- START OF FILE game-script.js ---
+// game-script.js
 'use strict';
 
-import utils from './utils.js'; // Импортируем
+import utils from './utils.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Инициализация Tippy.js с улучшенными настройками

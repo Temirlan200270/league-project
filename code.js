@@ -1,8 +1,11 @@
-import { db } from './firebase-config.js'; // Импортируем db
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-import newsUtils from './news-utils.js'; // ИМПОРТИРУЕМ!
+import newsUtils from './news-utils.js';
+import { initializeFirebase } from './firebase-config.js';
+
 
 document.addEventListener('DOMContentLoaded', function() {
+  // ИНИЦИАЛИЗАЦИЯ FIREBASE
+  const db = initializeFirebase(window.firebaseConfig);
 
   // Получаем новости из Firebase
   const newsRef = ref(db, 'news');
@@ -37,7 +40,7 @@ function displayLatestNews(allNews) {
     // Берем последние 3 новости
     const latestNews = sortedNews.slice(0, 3);
 
-    const newsContainer = document.querySelector('.latest-news-section .news-grid'); // Правильный селектор
+    const newsContainer = document.querySelector('.latest-news-section .news-grid');
 
     if (newsContainer) {
         // ИСПОЛЬЗУЕМ newsUtils.createNewsCard!

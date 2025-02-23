@@ -1,11 +1,8 @@
+import { initializeFirebase } from './firebase-config.js';
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { getDifficultyNumber, getDifficultyStars, filterChampions, createChampionCard } from './champions-utils.js';
-
-//utils.js
-import {debounce, animateOnScroll, updatePagination} from './utils.js'; // ИСПРАВЛЕНО
-
-import { roleCategories, difficultyLevels } from './data/constants.js'; // Импорт констант
-import { db } from './firebase-config.js'; //  Импортируем db!
+import {debounce, animateOnScroll, updatePagination} from './utils.js';
+import { roleCategories, difficultyLevels } from './data/constants.js';
 
 'use strict';
 
@@ -29,7 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
         search: ''
     };
     let currentPage = 1;
-    let championsData = []; // Переменная для хранения данных
+    let championsData = [];
+
+    // ИНИЦИАЛИЗАЦИЯ FIREBASE
+    const db = initializeFirebase(window.firebaseConfig);
 
      //  Функция загрузки данных (ИЗМЕНЕНА)
     function loadChampionsData() {

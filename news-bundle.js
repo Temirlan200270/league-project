@@ -2,9 +2,9 @@
 
 import newsUtils from './news-utils.js';
 import { debounce, updatePagination } from './utils.js';
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 import { NEWS_CATEGORIES } from './data/constants.js';
-import { db } from './firebase-config.js';
+import { initializeFirebase } from './firebase-config.js';
 
 
 const NEWS_PER_PAGE = 9;
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const newsGrid = document.querySelector('.news-grid');
     const searchInput = document.getElementById('news-search');
     const filterButtons = document.querySelectorAll('.filter-btn');
-	 const paginationContainer = document.getElementById('news-pagination'); //добавляем
+	 const paginationContainer = document.getElementById('news-pagination');
     let currentPage = 1;
     let currentCategory = 'all';
     let newsData = [];
@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Элемент news-grid не найден');
         return;
     }
+     // ИНИЦИАЛИЗАЦИЯ FIREBASE
+     const db = initializeFirebase(window.firebaseConfig);
 
 	function loadNewsData() {
         const newsRef = ref(db, 'news');
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const startIndex = (currentPage - 1) * NEWS_PER_PAGE;
         const paginatedNews = filteredNews.slice(startIndex, startIndex + NEWS_PER_PAGE);
         newsUtils.displayNews(paginatedNews);
-        updatePagination(paginationContainer, currentPage, NEWS_PER_PAGE, filteredNews.length, displayFilteredNews); // ИСПРАВЛЕНО
+        updatePagination(paginationContainer, currentPage, NEWS_PER_PAGE, filteredNews.length, displayFilteredNews);
     }
 
     filterButtons.forEach(button => {
