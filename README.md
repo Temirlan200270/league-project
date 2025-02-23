@@ -2,7 +2,7 @@
 
 Это демонстрационный проект фанатского сайта, посвященного игре League of Legends.  Проект создан в учебных целях для демонстрации навыков веб-разработки.
 
-**Ссылка на сайт:** [https://your-site-name.netlify.app]([https://your-site-name.netlify.app](https://elaborate-crostata-2d9540.netlify.app/))  <-- Замените на ВАШ URL!
+**Ссылка на сайт:** (https://elaborate-crostata-2d9540.netlify.app/))  <-- Замените на ВАШ URL!
 
 ## Особенности проекта:
 
